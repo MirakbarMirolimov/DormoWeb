@@ -35,12 +35,18 @@ Your repository is already connected: `https://github.com/MirakbarMirolimov/Dorm
 - **Name**: `dormo-api`
 - **Root Directory**: `backend`
 - **Environment**: `Python 3`
-- **Build Command**: `pip install -r requirements.txt`
-- **Start Command**: `python -m uvicorn main:app --host 0.0.0.0 --port $PORT`
+- **Build Command**: `pip install --upgrade pip && pip install -r requirements.txt`
+- **Start Command**: `gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT`
 
-### Alternative Start Commands (if above doesn't work):
-- `./start.sh` (if using the start script)
-- `gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT`
+### Alternative Start Commands (try in this order):
+1. `gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT`
+2. `python -m gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT`
+3. `python -m uvicorn main:app --host 0.0.0.0 --port $PORT`
+
+### If Still Having Issues:
+- Check the "Logs" tab in Render for detailed error messages
+- Ensure Python version is set correctly (we're using 3.10.12)
+- Verify all files are in the `backend` directory
 
 ### Step 3: Environment Variables
 Add these environment variables in Render:
