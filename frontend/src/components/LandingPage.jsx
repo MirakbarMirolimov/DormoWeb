@@ -92,9 +92,6 @@ const LandingPage = () => {
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
                 The Student Marketplace
               </h1>
-              <div className="flex justify-center mb-6">
-                <img src={dormoIcon} alt="Dormo" className="h-24 md:h-32 lg:h-40" />
-              </div>
             </div>
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
               The exclusive marketplace for CCBC students. Buy, sell, and trade textbooks, electronics, furniture, and more with your fellow students safely and easily.
