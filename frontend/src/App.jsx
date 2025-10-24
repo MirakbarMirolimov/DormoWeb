@@ -8,6 +8,13 @@ function App() {
   const [isVisible, setIsVisible] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showPrivacyModal, setShowPrivacyModal] = useState(false)
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
 
   useEffect(() => {
     setIsVisible(true)
@@ -27,6 +34,49 @@ function App() {
       window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [])
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setContactForm(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  // Handle form submission
+  const handleContactSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      // Use environment variable for API URL, fallback to localhost for development
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000'
+      
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactForm)
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        setSubmitStatus({ type: 'success', message: result.message })
+        setContactForm({ name: '', email: '', message: '' }) // Reset form
+      } else {
+        const error = await response.json()
+        setSubmitStatus({ type: 'error', message: error.detail || 'Failed to send message' })
+      }
+    } catch (error) {
+      console.error('Error submitting contact form:', error)
+      setSubmitStatus({ type: 'error', message: 'Network error. Please try again.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="app">
@@ -92,31 +142,52 @@ function App() {
           <h2 className="section-title">Get In Touch</h2>
           <form 
             className="contact-form"
-            action="https://formspree.io/f/mblzryyv"
-            method="POST"
+            onSubmit={handleContactSubmit}
           >
             <input 
               type="text" 
               name="name"
+              value={contactForm.name}
+              onChange={handleInputChange}
               placeholder="Your Name" 
               className="form-input"
               required 
+              disabled={isSubmitting}
             />
             <input 
               type="email" 
               name="email"
+              value={contactForm.email}
+              onChange={handleInputChange}
               placeholder="Your Email" 
               className="form-input"
               required 
+              disabled={isSubmitting}
             />
             <textarea 
               name="message"
+              value={contactForm.message}
+              onChange={handleInputChange}
               placeholder="Your Message" 
               className="form-textarea" 
               rows="5"
               required
+              disabled={isSubmitting}
             ></textarea>
-            <button type="submit" className="submit-button">Send Message</button>
+            <button 
+              type="submit" 
+              className="submit-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
+            
+            {/* Status Messages */}
+            {submitStatus && (
+              <div className={`form-status ${submitStatus.type}`}>
+                {submitStatus.message}
+              </div>
+            )}
           </form>
         </div>
       </section>
