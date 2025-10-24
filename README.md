@@ -1,150 +1,275 @@
-# DormoWeb
+# Dormo - Student Marketplace Platform
 
-A modern landing page for the Dormo student marketplace app, built with React (Vite) frontend and Python (FastAPI) backend.
+![Dormo](frontend/src/assets/small_icon.png)
 
-🛒 **Dormo** - The exclusive marketplace for CCBC students to buy, sell, and trade textbooks, electronics, furniture, and more safely within their campus community.
+**Dormo** is an exclusive student marketplace platform designed for CCBC students to buy, sell, and trade items safely within their campus community.
 
-## Project Structure
+## 🌟 Overview
+
+Dormo provides a secure, student-verified marketplace where CCBC students can:
+- Buy and sell textbooks, electronics, furniture, and more
+- Connect with verified students in a trusted environment
+- Save money on student essentials
+- Earn cash by selling unused items
+
+## 🏗️ Project Structure
 
 ```
 Dormo Website/
-├── frontend/          # React + Vite frontend
-│   ├── src/
-│   │   ├── components/
-│   │   │   └── LandingPage.jsx
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── package.json
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   └── index.html
-├── backend/           # Python FastAPI backend
-│   ├── main.py
-│   ├── requirements.txt
-│   └── .env.example
-└── README.md
+├── backend/              # FastAPI backend server
+│   ├── main.py          # Main application file
+│   ├── requirements.txt # Python dependencies
+│   └── .env.example     # Environment variables template
+│
+└── frontend/            # React + Vite frontend
+    ├── src/
+    │   ├── components/  # React components
+    │   ├── config/      # Configuration files
+    │   ├── services/    # API services
+    │   └── assets/      # Images and static files
+    ├── package.json     # Node dependencies
+    └── .env.example     # Environment variables template
 ```
 
-## Getting Started
+## 🚀 Quick Start
 
-### Frontend Setup
+### Prerequisites
 
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-The frontend will be available at `http://localhost:3000`
+- **Backend**: Python 3.9+, pip
+- **Frontend**: Node.js 16+, npm or yarn
+- Git
 
 ### Backend Setup
 
-1. Navigate to the backend directory:
+1. **Navigate to backend directory:**
    ```bash
    cd backend
    ```
 
-2. Create a virtual environment:
+2. **Create virtual environment:**
    ```bash
    python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Activate the virtual environment:
-   - Windows: `venv\Scripts\activate`
-   - macOS/Linux: `source venv/bin/activate`
-
-4. Install dependencies:
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Start the development server:
+4. **Set up environment variables:**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
+
+5. **Run the server:**
    ```bash
    python main.py
    ```
+   
+   Backend will be available at `http://localhost:8000`
 
-The backend API will be available at `http://localhost:8000`
+### Frontend Setup
 
-## Features
+1. **Navigate to frontend directory:**
+   ```bash
+   cd frontend
+   ```
 
-- **Student Marketplace**: Exclusive platform for CCBC students to buy and sell items
-- **Modern Design**: Beautiful, responsive landing page with gradient backgrounds and smooth animations
-- **Mobile Responsive**: Optimized for all device sizes
-- **Fast Performance**: Built with Vite for lightning-fast development and builds
-- **API Ready**: FastAPI backend with CORS configured for frontend integration
-- **Tailwind CSS**: Utility-first CSS framework for rapid styling
-- **Lucide Icons**: Beautiful, consistent iconography
-- **Brand Integration**: Custom Dormo branding and CCBC college integration
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Tech Stack
+3. **Set up environment variables:**
+   ```bash
+   cp .env.example .env
+   # Edit .env to point to your backend URL
+   ```
 
-### Frontend
-- React 18
-- Vite
-- Tailwind CSS
-- Lucide React (icons)
+4. **Run development server:**
+   ```bash
+   npm run dev
+   ```
+   
+   Frontend will be available at `http://localhost:3000`
+
+## 📚 API Documentation
+
+### Backend Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Root endpoint - API welcome message |
+| GET | `/health` | Health check endpoint |
+| GET | `/app-info` | Get application information |
+| POST | `/contact` | Submit contact form |
+
+### API Request Examples
+
+**Health Check:**
+```bash
+curl http://localhost:8000/health
+```
+
+**Submit Contact Form:**
+```bash
+curl -X POST http://localhost:8000/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@student.ccbc.edu",
+    "message": "I have a question about Dormo"
+  }'
+```
+
+## 🎨 Frontend Features
+
+### Current Pages
+
+1. **Landing Page** (`/`)
+   - Hero section with animated logo
+   - Features showcase
+   - App preview with onboarding screens
+   - Contact form
+   - Legal information (Privacy, Terms, Security)
+   - Footer
+
+2. **About Page** (`/about`)
+   - Mission and values
+   - Company story
+   - Call to action
+
+### Components
+
+- **Navigation** - Responsive navigation bar with routing
+- **LandingPage** - Main landing page with all sections
+- **AboutPage** - About us page
+- **ContactForm** - Functional contact form with API integration
+
+### Styling
+
+- **Tailwind CSS** - Utility-first CSS framework
+- **Custom animations** - Floating particles, gradients, hover effects
+- **Responsive design** - Mobile-first approach
+- **Dark theme** - Modern gradient background
+
+## 🔧 Development
+
+### Backend Development
+
+```bash
+cd backend
+python main.py  # Runs with auto-reload disabled
+```
+
+For development with auto-reload:
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+### Frontend Development
+
+```bash
+cd frontend
+npm run dev     # Start dev server
+npm run build   # Build for production
+npm run preview # Preview production build
+npm run lint    # Run ESLint
+```
+
+## 🚀 Deployment
+
+### Backend Deployment (Render/Railway)
+
+1. Push code to GitHub
+2. Connect repository to Render/Railway
+3. Set environment variables
+4. Deploy!
+
+### Frontend Deployment (Vercel)
+
+1. Push code to GitHub
+2. Import project in Vercel
+3. Set environment variables:
+   - `VITE_API_URL` - Your production backend URL
+4. Deploy!
+
+## 🔐 Environment Variables
+
+### Backend (.env)
+
+```env
+PORT=8000
+CORS_ORIGINS=https://your-frontend-url.vercel.app
+```
+
+### Frontend (.env)
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+## 📦 Tech Stack
 
 ### Backend
-- Python 3.8+
-- FastAPI
-- Uvicorn
-- Pydantic
+- **FastAPI** - Modern Python web framework
+- **Uvicorn** - ASGI server
+- **Pydantic** - Data validation
+- **Python-multipart** - Form data handling
 
-## API Endpoints
+### Frontend
+- **React 18** - UI library
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **React Router DOM** - Routing
+- **Lucide React** - Icons
 
-- `GET /` - Root endpoint
-- `GET /health` - Health check
-- `GET /app-info` - App information
-- `POST /contact` - Contact form submission
+## 🛡️ Security Features
 
-## Customization
+- CORS configuration for secure cross-origin requests
+- Input validation with Pydantic models
+- Student email verification (planned)
+- Secure payment processing with Stripe (planned)
+- Data encryption and protection
 
-The landing page is fully customizable. Key areas to modify:
+## 📱 Future Features
 
-1. **Brand Colors**: Update the primary color scheme in `tailwind.config.js`
-2. **Content**: Modify text and features in `LandingPage.jsx`
-3. **Logo**: Replace the Moon icon with your brand logo
-4. **API**: Extend the backend with additional endpoints as needed
+- [ ] User authentication and authorization
+- [ ] Marketplace listings (CRUD operations)
+- [ ] Real-time messaging between users
+- [ ] Payment integration with Stripe
+- [ ] Image upload and management
+- [ ] Search and filtering
+- [ ] User profiles and ratings
+- [ ] Push notifications
+- [ ] Mobile app (iOS/Android)
 
-## Deployment
+## 🤝 Contributing
 
-### Frontend (Vercel)
-The frontend is deployed to Vercel:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-1. Connect your GitHub repository to Vercel
-2. Set build settings:
-   - **Framework Preset**: Vite
-   - **Root Directory**: `frontend`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
+## 📄 License
 
-### Backend (Render)
-The backend is deployed to Render:
+Proprietary - All rights reserved by Dormo
 
-1. Connect your GitHub repository to Render
-2. Create a new Web Service
-3. Set build settings:
-   - **Root Directory**: `backend`
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+## 📧 Contact
 
-### Environment Variables
-Set these in your deployment platforms:
-- **Frontend**: No environment variables needed
-- **Backend**: 
-  - `PORT` (automatically set by Render)
-  - `CORS_ORIGINS` (set to your Vercel frontend URL)
+- **Email**: hello@dormo.app
+- **Support**: support@dormo.app
+- **Security**: security@dormo.app
 
-## License
+## 🎓 For CCBC Students
 
-This project is created for Dormo app development.
+Dormo is exclusively for CCBC students. You'll need your CCBC student email to register and access the marketplace.
+
+---
+
+**Built with ❤️ for CCBC Students**
+
+*Making student life more affordable, one transaction at a time.*

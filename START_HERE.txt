@@ -1,0 +1,92 @@
+╔════════════════════════════════════════════════════════════════╗
+║                    DORMO - START HERE                          ║
+║          Student Marketplace for CCBC Students                 ║
+╚════════════════════════════════════════════════════════════════╝
+
+⚠️  IMPORTANT: Use the "frontend" folder, NOT "my-react-app"!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 STEP-BY-STEP INSTRUCTIONS:
+
+1️⃣  START BACKEND (Terminal 1)
+   
+   cd backend
+   venv\Scripts\activate
+   python main.py
+   
+   ✅ Backend running at: http://localhost:8000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2️⃣  START FRONTEND (Terminal 2 - NEW WINDOW)
+   
+   cd frontend
+   npm install
+   npm run dev
+   
+   ✅ Frontend running at: http://localhost:3000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3️⃣  OPEN IN BROWSER
+   
+   Visit: http://localhost:3000
+   
+   You should see the Dormo landing page! 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 WHAT YOU'LL SEE:
+
+✓ Beautiful animated landing page
+✓ "Exclusively for CCBC Students" badge
+✓ Features section
+✓ Contact form (connected to backend)
+✓ About page (click "About" in navigation)
+✓ Legal information dropdowns
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 FOLDER STRUCTURE:
+
+Dormo Website/
+├── backend/          ← FastAPI backend
+├── frontend/         ← YOUR DORMO APP ✅ USE THIS!
+└── my-react-app/     ← Default template ❌ DON'T USE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🐛 TROUBLESHOOTING:
+
+Problem: "Failed to resolve import"
+Solution: Make sure you're in the "frontend" folder, not "my-react-app"
+
+Problem: Backend won't start
+Solution: Check if Python 3.9+ is installed and virtual environment is activated
+
+Problem: Frontend won't start
+Solution: Run "npm install" first in the frontend folder
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 MORE HELP:
+
+- Quick Start: See QUICKSTART.md
+- Full Guide: See DEVELOPMENT.md
+- Features: See FEATURES.md
+- Main Docs: See README.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎓 CCBC STUDENTS ONLY
+
+Dormo is exclusively designed for Community College of Baltimore 
+County (CCBC) students. The app requires CCBC student email 
+verification for registration.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Need help? Check IMPORTANT_READ_FIRST.md
+
+Happy coding! 🚀
