@@ -554,10 +554,12 @@
 
 .ccbc-logo-img {
   width: 300px;
-  height: 200px;
+  height: auto;
+  max-width: 95vw;
   position: relative;
   z-index: 2;
   filter: none;
+  object-fit: contain;
 }
 
 /* CCBC Text Content */
@@ -749,7 +751,8 @@
   }
   
   .contact-form {
-    padding: 0 1rem;
+    padding: 2rem 1rem;
+    margin: 0 1rem;
   }
   
   .form-input,
@@ -765,7 +768,9 @@
   
   .ccbc-logo-img {
     width: 200px;
-    height: 130px;
+    height: auto;
+    max-width: 90vw;
+    object-fit: contain;
   }
   
   .ccbc-title {
@@ -848,7 +853,9 @@
   
   .ccbc-logo-img {
     width: 150px;
-    height: 100px;
+    height: auto;
+    max-width: 85vw;
+    object-fit: contain;
   }
   
   .ccbc-title {
