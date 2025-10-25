@@ -122,37 +122,37 @@ async def submit_contact(contact_data: ContactMessage):
         logger.info(f"Contact form submission from {contact_data.name} ({contact_data.email})")
         logger.info(f"Message: {contact_data.message}")
         
-        # Try to send email, but don't fail if email service is not configured
+        # Send to Formspree
+        formspree_url = "https://formspree.io/f/mblzryyv"
+        
+        # Prepare data for Formspree
+        formspree_data = {
+            "name": contact_data.name,
+            "email": contact_data.email,
+            "message": contact_data.message,
+            "_subject": f"New Contact Form Message from {contact_data.name}",
+            "_replyto": contact_data.email
+        }
+        
         try:
-            if SMTP_USER and SMTP_PASSWORD and SMTP_PASSWORD != "your-app-password-here":
-                # Create email subject and body
-                subject = f"New Contact Form Message from {contact_data.name}"
+            import httpx
+            async with httpx.AsyncClient() as client:
+                response = await client.post(
+                    formspree_url,
+                    data=formspree_data,
+                    headers={
+                        "Accept": "application/json"
+                    }
+                )
                 
-                # Create HTML email body
-                email_body = f"""
-                <html>
-                <body>
-                    <h2>New Contact Form Submission</h2>
-                    <p><strong>From:</strong> {contact_data.name}</p>
-                    <p><strong>Email:</strong> {contact_data.email}</p>
-                    <p><strong>Submitted:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-                    <hr>
-                    <h3>Message:</h3>
-                    <p>{contact_data.message.replace(chr(10), '<br>')}</p>
-                    <hr>
-                    <p><em>This message was sent from the Dormo website contact form.</em></p>
-                </body>
-                </html>
-                """
-                
-                # Send email
-                await send_email(subject, email_body)
-                logger.info("Email sent successfully")
-            else:
-                logger.warning("Email service not configured - message logged only")
-        except Exception as email_error:
-            logger.error(f"Failed to send email: {str(email_error)}")
-            # Continue without failing the request
+                if response.status_code == 200:
+                    logger.info("Successfully sent to Formspree")
+                else:
+                    logger.error(f"Formspree error: {response.status_code} - {response.text}")
+                    
+        except Exception as formspree_error:
+            logger.error(f"Failed to send to Formspree: {str(formspree_error)}")
+            # Continue without failing the request - we still logged it
         
         return {
             "message": "Thank you for your message! We'll get back to you soon.",
