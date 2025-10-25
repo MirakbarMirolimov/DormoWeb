@@ -52,7 +52,8 @@ function App() {
 
     try {
       // Use environment variable for API URL, fallback to localhost for development
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000'
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      console.log('API URL being used:', apiUrl)
       
       const response = await fetch(`${apiUrl}/contact`, {
         method: 'POST',

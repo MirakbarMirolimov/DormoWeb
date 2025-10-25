@@ -25,6 +25,8 @@ app = FastAPI(
 allowed_origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:5173",  # Vite development server
+    "http://127.0.0.1:5173",  # Vite development server
     "https://dormo-web.vercel.app",  # Add your Vercel domain here
     "https://dormoweb.vercel.app",   # Alternative domain
 ]
@@ -116,30 +118,41 @@ async def health_check():
 async def submit_contact(contact_data: ContactMessage):
     """Handle contact form submissions"""
     try:
-        # Create email subject and body
-        subject = f"New Contact Form Message from {contact_data.name}"
-        
-        # Create HTML email body
-        email_body = f"""
-        <html>
-        <body>
-            <h2>New Contact Form Submission</h2>
-            <p><strong>From:</strong> {contact_data.name}</p>
-            <p><strong>Email:</strong> {contact_data.email}</p>
-            <p><strong>Submitted:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-            <hr>
-            <h3>Message:</h3>
-            <p>{contact_data.message.replace(chr(10), '<br>')}</p>
-            <hr>
-            <p><em>This message was sent from the Dormo website contact form.</em></p>
-        </body>
-        </html>
-        """
-        
-        # Send email
-        await send_email(subject, email_body)
-        
+        # Log the contact form submission
         logger.info(f"Contact form submission from {contact_data.name} ({contact_data.email})")
+        logger.info(f"Message: {contact_data.message}")
+        
+        # Try to send email, but don't fail if email service is not configured
+        try:
+            if SMTP_USER and SMTP_PASSWORD and SMTP_PASSWORD != "your-app-password-here":
+                # Create email subject and body
+                subject = f"New Contact Form Message from {contact_data.name}"
+                
+                # Create HTML email body
+                email_body = f"""
+                <html>
+                <body>
+                    <h2>New Contact Form Submission</h2>
+                    <p><strong>From:</strong> {contact_data.name}</p>
+                    <p><strong>Email:</strong> {contact_data.email}</p>
+                    <p><strong>Submitted:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+                    <hr>
+                    <h3>Message:</h3>
+                    <p>{contact_data.message.replace(chr(10), '<br>')}</p>
+                    <hr>
+                    <p><em>This message was sent from the Dormo website contact form.</em></p>
+                </body>
+                </html>
+                """
+                
+                # Send email
+                await send_email(subject, email_body)
+                logger.info("Email sent successfully")
+            else:
+                logger.warning("Email service not configured - message logged only")
+        except Exception as email_error:
+            logger.error(f"Failed to send email: {str(email_error)}")
+            # Continue without failing the request
         
         return {
             "message": "Thank you for your message! We'll get back to you soon.",
@@ -147,9 +160,6 @@ async def submit_contact(contact_data: ContactMessage):
             "received_at": datetime.now()
         }
         
-    except HTTPException:
-        # Re-raise HTTP exceptions
-        raise
     except Exception as e:
         logger.error(f"Error processing contact form: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to process contact form")
