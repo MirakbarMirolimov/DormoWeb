@@ -83,6 +83,15 @@ function App() {
     <div className="app">
       {/* Hero Section */}
       <section className="hero">
+        {/* Animated Background Elements */}
+        <div className="floating-shapes">
+          <div className="shape shape-1"></div>
+          <div className="shape shape-2"></div>
+          <div className="shape shape-3"></div>
+          <div className="shape shape-4"></div>
+          <div className="shape shape-5"></div>
+        </div>
+        
         <div className="hero-content" style={{ 
           transform: `translateY(${scrollY * 0.5}px)`,
           opacity: 1 - scrollY / 500
@@ -95,18 +104,6 @@ function App() {
             className={`hero-logo ${isVisible ? 'smooth-fade-in-delay' : ''}`}
           />
           
-          <h1 className={`hero-title ${isVisible ? 'slide-up' : ''}`}>
-            Welcome to Dormo
-          </h1>
-          <p className={`hero-subtitle ${isVisible ? 'slide-up-delay' : ''}`}>
-            Your Student Marketplace Platform
-          </p>
-          <button 
-            className={`cta-button ${isVisible ? 'slide-up-delay-2' : ''}`}
-            onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
-          >
-            Explore More
-          </button>
         </div>
         <div className="scroll-indicator">
           <div className="mouse"></div>
