@@ -245,6 +245,42 @@ function App() {
         <div className="ccbc-decoration ccbc-decoration-2"></div>
       </section>
 
+      {/* App Store Badges Section */}
+      <section className="app-badges-section">
+        <div className="app-badges-container">
+          <h2 className="app-badges-title">Download Dormo Today</h2>
+          <p className="app-badges-subtitle">
+            Get the Dormo app on your mobile device and start buying and selling with your campus community
+          </p>
+          <div className="app-badges">
+            <a 
+              href="https://apps.apple.com/us/app/dormo-marketplace/id6755007551" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="app-badge"
+            >
+              <img 
+                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                alt="Download on the App Store" 
+                className="badge-image-ios"
+              />
+            </a>
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.mirakbarmirolimov.dormo" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="app-badge"
+            >
+              <img 
+                src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                alt="Get it on Google Play" 
+                className="badge-image-android"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
