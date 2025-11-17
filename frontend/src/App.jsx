@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import dormoLogo from './assets/icon.png'
 import ccbcLogo from './assets/ccbc_logo.png'
+import appleQRCode from './assets/apple_store_qrcode.png'
+import googleQRCode from './assets/google_play_qrcode.png'
 import './App.css'
 
 function App() {
@@ -252,6 +254,8 @@ function App() {
           <p className="app-badges-subtitle">
             Get the Dormo app on your mobile device and start buying and selling with your campus community
           </p>
+          
+          {/* App Store Badges */}
           <div className="app-badges">
             <a 
               href="https://apps.apple.com/us/app/dormo-marketplace/id6755007551" 
@@ -277,6 +281,29 @@ function App() {
                 className="badge-image-android"
               />
             </a>
+          </div>
+          
+          {/* QR Codes Section */}
+          <div className="qr-codes-section">
+            <h3 className="qr-codes-title">Or scan to download:</h3>
+            <div className="qr-codes">
+              <div className="qr-code-item">
+                <img 
+                  src={appleQRCode} 
+                  alt="App Store QR Code" 
+                  className="qr-code-image"
+                />
+                <p className="qr-code-label">App Store</p>
+              </div>
+              <div className="qr-code-item">
+                <img 
+                  src={googleQRCode} 
+                  alt="Google Play QR Code" 
+                  className="qr-code-image"
+                />
+                <p className="qr-code-label">Google Play</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -737,6 +737,72 @@
   transition: all 0.3s ease;
 }
 
+/* QR Codes Section */
+.qr-codes-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.qr-codes-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.qr-codes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.qr-code-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  padding: 1.5rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.qr-code-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.qr-code-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: white;
+  padding: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.qr-code-item:hover .qr-code-image {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.qr-code-label {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  margin: 0;
+}
+
 
 
 /* Responsive Design */
@@ -762,6 +828,29 @@
     height: 50px;
     width: 150px;
   }
+  
+  .qr-codes-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+  
+  .qr-codes-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .qr-codes {
+    gap: 2rem;
+  }
+  
+  .qr-code-item {
+    padding: 1rem;
+  }
+  
+  .qr-code-image {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -773,6 +862,23 @@
   .badge-image {
     height: 45px;
     width: 135px;
+  }
+  
+  .qr-codes {
+    gap: 1.5rem;
+  }
+  
+  .qr-code-item {
+    padding: 0.75rem;
+  }
+  
+  .qr-code-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .qr-code-label {
+    font-size: 0.9rem;
   }
 }
 
